@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+      abc {
+        font-size: large;
+        color: tomato;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }} <br />
+      <button @click="count++">Click Up !</button> <br />
+      <span>Count : {{ count }}</span> <br />
+      <button @click="count=0">Click zero</button> <br />
+      <button @click="count--">Click Down!</button>
+      <span
+        >이미지 테스트 <br />
+        <img
+          v-bind:src="imgfile"/>
+    </div>
+    <script>
+      const { createApp } = Vue; //구조분해할당
+      createApp({
+        data() {
+          //data에 function(){} ES6문법으로 인해 data()
+          return {
+            message: "Hello Vue!",
+            count: 0,
+            test: "abc",
+            
+          };
+        },
+      }).mount("#app"); //app을 mount시킨다.
+    </script>
+  </body>
+</html>
