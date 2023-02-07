@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!--SFC의 template영역-->
+      <form @submit.prevent="addTodo">
+        <input type="text" v-model="newTodo" />
+        <button>Add TodoList</button>
+      </form>
+      <ul>
+        <li v-for="todo in todos" :key="todo.id">
+          {{ todo.text }} <button @click="remove(todo)">X</button>
+          <button @click="editTodo(todo)">수정</button>
+        </li>
+      </ul>
+    </div>
+    <script>
+      const { createApp } = Vue;
+      let id = 0;
+
+      createApp({
+        data() {
+          return {
+            newTodo: "",
+            todos: [
+              { id: id++, text: "일본어 학습" },
+              { id: id++, text: "ES 작성" },
+              { id: id++, text: "포폴 작성" }, //앞은 key의 id, 다음은 변수의 id
+            ],
+          };
+        },
+        methods: {
+          addTodo() {
+            this.todos.push({ id: id++, text: this.newTodo });
+            this.newTodo = "";
+          },
+          remove(todo) {
+            this.todos = this.todos.filter((t) => t !== todo);
+          },
+          editTodo(todo) {},
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

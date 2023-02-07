@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- <button>눌러주세요</button>
+      `greet` は上で定義したメソッド名です。 -->
+      <!-- <button @click="greet">Greet</button> <br /> -->
+
+      <br />
+
+      <button @click="awesome = !awesome">Toggle</button> <br />
+      <h1 v-if="awesome">Vue is awesome!</h1>
+      <h1 v-else>Oh my G O D !🥺</h1>
+    </div>
+
+    <script>
+      const { createApp } = Vue;
+
+      createApp({
+        data() {
+          return {
+            count: 0,
+            name: "Japan IT",
+            awesome: false,
+          };
+        },
+        methods: {
+          toggle() {
+            this.awesome = !this.awesome;
+          },
+          add(event) {
+            this.count++;
+          },
+          alertTest(event) {
+            alert(`안녕하세요? ${this.name} 여러분!`);
+            if (event) {
+              alert(event.target.value + " : " + event.target.tagName);
+            }
+          },
+        },
+      }).mount("#app");
+    </script>
+  </body>
+</html>

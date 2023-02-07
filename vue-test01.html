@@ -5,39 +5,73 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <script src="https://unpkg.com/vue@3"></script>
+    <!-- import vue *중요!* -->
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <style>
-      abc {
+      test {
         font-size: large;
-        color: tomato;
+        color: aquamarine;
       }
     </style>
   </head>
   <body>
+    <!-- 객체 부분~ *중요!* -->
     <div id="app">
-      {{ message }} <br />
-      <button @click="count++">Click Up !</button> <br />
-      <span>Count : {{ count }}</span> <br />
-      <button @click="count=0">Click zero</button> <br />
-      <button @click="count--">Click Down!</button>
-      <span
-        >이미지 테스트 <br />
-        <img
-          v-bind:src="imgfile"/>
+      {{ message }}
+      <br />
+      <!-- @click="실행코드" -->
+      <div>
+        카운터:
+        <label style="color: blueviolet"> {{count}} </label>
+      </div>
+      <button @click="count++">+</button>
+      <button @click="count--">-</button>
+      <button @click="count = 0">reset</button>
+      <p v-text="test" style="border: 1px solid red">테스트</p>
+      <p v-html="test" style="border: 1px solid blue">테스트</p>
+      <p style="border: 1px solid black">{{test}}</p>
+      <span>
+        이미지 테스트 1<br />
+        <img v-bind:src="imgfile[0]" alt="" />
+      </span>
+      <br />
+      <span>
+        이미지 테스트 2<br />
+        <img v-bind:src="imgfile[1]" alt="" />
+      </span>
+      <br />
+      <p>스타일 적용</p>
+      <p v-bind:class="tcValue1">스타일 적용</p>
+      <p v-bind:class="[tcValue, tcValue1]">클래스 적용</p>
+      <input v-model="searchText" />
+      <input v-model.lazy="searchText" />
+      <p>검색 키워드: {{searchText}}</p>
+      <p>검색 키워드 수: {{searchText.length}}</p>
+      <input v-model.trim="msg" />
+      <p>검색 키워드: {{msg}}</p>
     </div>
+
     <script>
-      const { createApp } = Vue; //구조분해할당
+      const { createApp } = Vue;
+
       createApp({
         data() {
-          //data에 function(){} ES6문법으로 인해 data()
           return {
-            message: "Hello Vue!",
+            message: "안녕 나는 Vue!",
             count: 0,
-            test: "abc",
-            
+            test: "<h1> abcc<h1>",
+            imgfile: [
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIAs6jJSI__64eWqPZZ300vmcWPLcyMIF5Mg&usqp=CAU",
+              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR03-b7LwXIu5QkqCrUZEseHLlmALRXHea-kQ&usqp=CAU",
+            ],
+            tcValue: "abc",
+            tcValue1: "abc1",
+            searchText: "입력하세요",
+            msg: "    abc    ",
           };
         },
-      }).mount("#app"); //app을 mount시킨다.
+        methods: {},
+      }).mount("#app");
     </script>
   </body>
 </html>
